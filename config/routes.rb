@@ -2,6 +2,8 @@ Kip::Application.routes.draw do
 
   devise_for :users
 
+  resources :itineraries
+
   root :to => "itineraries#index"
   
   # The priority is based upon order of creation:

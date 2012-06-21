@@ -26,7 +26,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'growl'
-  gem 'factory_girl'
+  gem "factory_girl_rails", "~> 3.0"
   gem 'capybara'
   gem 'launchy'
 end

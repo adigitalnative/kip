@@ -1,1 +1,18 @@
-<h1>Foo</h1>
+<h2>Your Itineraries</h2>
+
+<table id="itinerary_list">
+  <% if @itineraries == [] %>
+    <%= @empty_message %>
+  <% else %>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+  </tr>
+    <% @itineraries.each do |itinerary| %>
+      <tr>
+        <td><%= itinerary.id %></td>
+        <td><%= link_to itinerary.name, itinerary_path(itinerary) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
