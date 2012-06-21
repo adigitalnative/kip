@@ -11,6 +11,25 @@ describe "Itineraries" do
     end
   end
 
+  describe "creating an itinerary" do
+    it "has a link to create an itinerary" do
+      page.should have_content("Create itinerary")
+    end
+
+    it "has a form to create an itinerary" do
+      click_link_or_button("Create itinerary")
+      page.should have_selector("#new_itinerary")
+    end
+
+    it "Creates an itinerary" do
+      current_itinerary_count = Itinerary.count
+      click_link_or_button("Create itinerary")
+      fill_in :name, with: "Test Itinerary"
+      click_link_or_button("Save Itinerary")
+      Itinerary.count.should == current_itinerary_count + 1
+    end
+  end
+
   context "when there is at least one itinerary" do
     let!(:itinerary_one) {FactoryGirl.create(:itinerary, name: "Itinerary One")}
     let!(:itinerary_two) {FactoryGirl.create(:itinerary, name: "Itinerary Two")}

@@ -10,4 +10,17 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
   end
+
+  def new
+    @itinerary = Itinerary.new
+  end
+
+  def create
+    @itinerary = Itinerary.new(params[:itinerary])
+    @itinerary.save
+
+    flash[:message] = "Itinerary Created"
+
+    redirect_to itinerary_path(@itinerary)
+  end
 end

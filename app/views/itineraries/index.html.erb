@@ -1,5 +1,6 @@
 <h2>Your Itineraries</h2>
 
+<%= link_to "Create itinerary", new_itinerary_path %>
 <table id="itinerary_list">
   <% if @itineraries == [] %>
     <%= @empty_message %>

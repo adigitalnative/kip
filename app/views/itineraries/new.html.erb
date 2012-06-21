@@ -1,0 +1,10 @@
+<h2>Create Itinerary</h2>
+<%= form_for @itinerary do |f| %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.submit "Save Itinerary" %>
+  </div>
+<% end %>
