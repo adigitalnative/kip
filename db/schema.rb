@@ -11,12 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120621190932) do
+ActiveRecord::Schema.define(:version => 20120621221744) do
+
+  create_table "activities", :force => true do |t|
+    t.string   "name"
+    t.string   "street"
+    t.string   "city"
+    t.string   "country"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "itineraries", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "itinerary_activity_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+  end
+
+  create_table "itinerary_activity", :force => true do |t|
+    t.integer "itinerary_id"
+    t.integer "activity_id"
   end
 
   create_table "users", :force => true do |t|

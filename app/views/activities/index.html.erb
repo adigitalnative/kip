@@ -1,0 +1,27 @@
+<h2>Activities</h2>
+<% if @activities == [] %>
+  <p>
+    There are no activities yet. Please check back soon!</td>
+  </p>
+<% else %>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Phone</th>
+    </tr>
+    <% @activities.each do |activity| %>
+      <tr>
+        <td><%= activity.id %></td>
+        <td><%= activity.name %></td>
+        <td><%= activity.street %></td>
+        <td><%= activity.city %></td>
+        <td><%= activity.country %></td>
+        <td><%= activity.phone %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

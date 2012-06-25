@@ -1,1 +1,18 @@
 <h2><%= @itinerary.name %></h2>
+<%= link_to "Delete", itinerary_path(@itinerary), method: "delete" %>
+<table id="itinerary">
+
+</table>
+
+<table>
+  <% @activities.each do |activity| %>
+    <tr>
+      <td><%= activity.name %></td>
+      <td><%= activity.street %></td>
+      <td><%= activity.city %></td>
+      <td><%= activity.country %></td>
+      <td><%= activity.phone %></td>
+      <td><a href="#">Add <%= activity.name %> to itinerary</a></td>
+    </tr>
+  <% end %>
+</table>

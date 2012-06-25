@@ -28,6 +28,32 @@ describe "Itineraries" do
       click_link_or_button("Save Itinerary")
       Itinerary.count.should == current_itinerary_count + 1
     end
+
+    describe "building an itinerary when activities exist" do
+      let!(:activity_one) { FactoryGirl.create(:activity, name: "Activity One") }
+      let!(:activity_two) { FactoryGirl.create(:activity, name: "Activity Two") }
+      let!(:activity_three) { FactoryGirl.create(:activity, name: "Activity Three") }
+      let!(:itinerary) { FactoryGirl.create(:itinerary) }
+
+      it "has a list of activities associated with that itinerary" do
+        visit itinerary_path(itinerary.id)
+        page.should have_content(activity_one.name)
+        page.should have_content(activity_two.name)
+        page.should have_content(activity_three.name)
+      end
+
+      it "adds the item to the itinerary when the add button is clicked" do
+        visit itinerary_path(itinerary.id)
+        click_link_or_button("Add #{activity_one.name} to itinerary")
+        within("#itinerary") do
+          page.should have_content(activity_one.name)
+        end
+      end
+
+      it "does not include added items in the list of activities to select"
+
+    end
+
   end
 
   context "when there is at least one itinerary" do
@@ -53,6 +79,12 @@ describe "Itineraries" do
       it "Takes you to the details page for the itinerary" do
         click_link_or_button "Itinerary One"
         page.should have_content("Itinerary One")
+      end
+
+      it "allows the user to delete the itinerary" do
+        visit itinerary_path(itinerary_one.id)
+        click_link_or_button "Delete"
+        page.should_not have_content("Itinerary One")
       end
     end
   end

@@ -9,6 +9,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
+    @activities = Activity.all
   end
 
   def new
@@ -22,5 +23,11 @@ class ItinerariesController < ApplicationController
     flash[:message] = "Itinerary Created"
 
     redirect_to itinerary_path(@itinerary)
+  end
+
+  def destroy
+    @itinerary = Itinerary.find(params[:id])
+    @itinerary.destroy
+    redirect_to itineraries_path
   end
 end

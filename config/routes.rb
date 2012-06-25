@@ -3,6 +3,7 @@ Kip::Application.routes.draw do
   devise_for :users
 
   resources :itineraries
+  resources :activities
 
   root :to => "itineraries#index"
   
