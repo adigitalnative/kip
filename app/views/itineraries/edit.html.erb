@@ -1,10 +1,20 @@
 <h2><%= @itinerary.name %></h2>
+<h3>Currently in Itinerary</h3>
 <table id="itinerary">
-
+  <% @current_activities.each do |activity| %>
+    <tr>
+      <td><%= activity.name %></td>
+      <td><%= activity.street %></td>
+      <td><%= activity.city %></td>
+      <td><%= activity.country %></td>
+      <td><%= activity.phone %></td>
+    </tr>
+  <% end %>
 </table>
 
+<h3>Possible additions to Itinerary</h3>
 <table>
-  <% @activities.each do |activity| %>
+  <% @available_activities.each do |activity| %>
     <%= form_for @itinerary do |f| %>
       <%= f.hidden_field :activity_id, :value => activity.id %>
       <tr>
@@ -13,8 +23,10 @@
         <td><%= activity.city %></td>
         <td><%= activity.country %></td>
         <td><%= activity.phone %></td>
-        <td><%= f.submit %></td>
+        <td><%= f.submit "Add to Itinerary" %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
+
+<p>Finished editing? <%= link_to "Return to the Itinerary view", itinerary_path(@itinerary) %></p>

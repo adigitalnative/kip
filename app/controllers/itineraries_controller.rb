@@ -33,7 +33,8 @@ class ItinerariesController < ApplicationController
 
   def edit
     @itinerary = Itinerary.find(params[:id])
-    @activities = Activity.all
+    @available_activities = Activity.all
+    @current_activities = @itinerary.activities
   end
 
   def update
@@ -41,7 +42,8 @@ class ItinerariesController < ApplicationController
     @activity = Activity.find(params[:itinerary][:activity_id])
     @itinerary.activities << @activity
 
-    redirect_to itinerary_path(@itinerary)
+    flash[:message] = "#{@activity.name} added to #{@itinerary.name}"
+    redirect_to edit_itinerary_path(@itinerary)
   end
 
 end
