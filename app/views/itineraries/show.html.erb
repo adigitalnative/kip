@@ -1,5 +1,6 @@
 <h2><%= @itinerary.name %></h2>
 <%= link_to "Delete", itinerary_path(@itinerary), method: "delete" %>
+<%= link_to "Edit this Itinerary", edit_itinerary_path(@itinerary) %>
 <table id="itinerary">
 
 </table>
@@ -12,7 +13,6 @@
       <td><%= activity.city %></td>
       <td><%= activity.country %></td>
       <td><%= activity.phone %></td>
-      <td><a href="#">Add <%= activity.name %> to itinerary</a></td>
     </tr>
   <% end %>
 </table>

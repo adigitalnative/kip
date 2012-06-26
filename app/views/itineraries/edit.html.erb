@@ -1,0 +1,20 @@
+<h2><%= @itinerary.name %></h2>
+<table id="itinerary">
+
+</table>
+
+<table>
+  <% @activities.each do |activity| %>
+    <%= form_for @itinerary do |f| %>
+      <%= f.hidden_field :activity_id, :value => activity.id %>
+      <tr>
+        <td><%= activity.name %></td>
+        <td><%= activity.street %></td>
+        <td><%= activity.city %></td>
+        <td><%= activity.country %></td>
+        <td><%= activity.phone %></td>
+        <td><%= f.submit %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

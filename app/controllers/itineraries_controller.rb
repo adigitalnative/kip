@@ -9,7 +9,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary = Itinerary.find(params[:id])
-    @activities = Activity.all
+    @activities = @itinerary.activities
   end
 
   def new
@@ -30,4 +30,18 @@ class ItinerariesController < ApplicationController
     @itinerary.destroy
     redirect_to itineraries_path
   end
+
+  def edit
+    @itinerary = Itinerary.find(params[:id])
+    @activities = Activity.all
+  end
+
+  def update
+    @itinerary = Itinerary.find(params[:id])
+    @activity = Activity.find(params[:itinerary][:activity_id])
+    @itinerary.activities << @activity
+
+    redirect_to itinerary_path(@itinerary)
+  end
+
 end
