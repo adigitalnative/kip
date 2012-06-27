@@ -10,6 +10,7 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     @activities = @itinerary.activities
+    @json = @activities.to_gmaps4rails
   end
 
   def new
@@ -33,8 +34,17 @@ class ItinerariesController < ApplicationController
 
   def edit
     @itinerary = Itinerary.find(params[:id])
-    @available_activities = Activity.all
     @current_activities = @itinerary.activities
+
+    @available_activities = []
+    all_activities = Activity.all
+    all_activities.each do |activity|
+      if @current_activities.include?(activity)
+        #do nada
+      else
+        @available_activities << activity
+      end
+    end
   end
 
   def update

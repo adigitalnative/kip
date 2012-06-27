@@ -1,6 +1,7 @@
 <h2><%= @itinerary.name %></h2>
 <%= link_to "Delete", itinerary_path(@itinerary), method: "delete" %>
 <%= link_to "Edit this Itinerary", edit_itinerary_path(@itinerary) %>
+<%= gmaps4rails(@json) %>
 <table id="itinerary">
 
 </table>
