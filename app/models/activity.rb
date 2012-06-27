@@ -6,4 +6,6 @@ class Activity < ActiveRecord::Base
   def gmaps4rails_address
     "#{self.street}, #{self.city}, #{self.country}"
   end
+
+  
 end

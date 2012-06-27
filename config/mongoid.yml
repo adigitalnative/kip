@@ -1,0 +1,29 @@
+development:
+  host: pearl.mongohq.com
+  database: app4574678
+  username: ha
+  password: hungry
+  port: 27019
+
+
+test:
+  host: pearl.mongohq.com
+  database: app4574678
+  username: ha
+  password: hungry
+  port: 27019
+
+
+# set these environment variables on your prod server
+production:
+  host: pearl.mongohq.com
+  database: app4574678
+  username: ha
+  password: hungry
+  port: 27019
+
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

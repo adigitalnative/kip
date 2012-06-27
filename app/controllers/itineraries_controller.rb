@@ -45,6 +45,7 @@ class ItinerariesController < ApplicationController
         @available_activities << activity
       end
     end
+    @deal = @deal || get_families_deals
   end
 
   def update
@@ -54,6 +55,19 @@ class ItinerariesController < ApplicationController
 
     flash[:message] = "#{@activity.name} added to #{@itinerary.name}"
     redirect_to edit_itinerary_path(@itinerary)
+  end
+
+  private
+
+  def get_families_deals
+    family_deals = LivingSocialDeal.where(deal_type:"FamiliesDeal")
+    @deals_with_address = family_deals.third
+    # family_deals.each do |deal|
+    #   if deal.address1 != nil
+    #     @deals_with_address << deal
+    #   end
+    # end
+    @deals_with_address
   end
 
 end

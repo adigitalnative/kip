@@ -26,6 +26,30 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
     t.boolean  "gmaps"
   end
 
+  create_table "family_deals", :force => true do |t|
+    t.string   "ls_id"
+    t.string   "link"
+    t.string   "title"
+    t.string   "long_title"
+    t.string   "deal_type"
+    t.string   "merchandise_type"
+    t.string   "market_id"
+    t.string   "market_name"
+    t.string   "market_location"
+    t.string   "featureType"
+    t.string   "country_code"
+    t.string   "subtitle"
+    t.string   "image_url"
+    t.string   "categories"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "itineraries", :force => true do |t|
     t.string   "name"
     t.string   "itinerary_activity_id"

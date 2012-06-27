@@ -35,17 +35,16 @@ describe "Itineraries" do
       let!(:activity_three) { FactoryGirl.create(:activity, name: "Activity Three") }
       let!(:itinerary) { FactoryGirl.create(:itinerary) }
 
-      it "has a list of activities associated with that itinerary" do
-        pending "Needs reworking post-redesign"
+      it "does not display activities not yet associated with the itinerary" do
         visit itinerary_path(itinerary.id)
-        page.should have_content(activity_one.name)
-        page.should have_content(activity_two.name)
-        page.should have_content(activity_three.name)
+        page.should_not have_content(activity_one.name)
+        page.should_not have_content(activity_two.name)
+        page.should_not have_content(activity_three.name)
       end
 
-      it "adds the item to the itinerary when the add button is clicked" do
-        pending "Needs reworking"
-        visit itinerary_path(itinerary.id)
+      it "can add items to the itinerary" do
+        visit edit_itinerary_path(itinerary.id)
+        within()
         click_link_or_button("Add #{activity_one.name} to itinerary")
         within("#itinerary") do
           page.should have_content(activity_one.name)
