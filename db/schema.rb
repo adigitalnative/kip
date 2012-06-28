@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
     t.string   "city"
     t.string   "country"
     t.string   "phone"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "deal",       :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"
@@ -47,9 +48,6 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
     t.string   "state"
     t.string   "zip"
     t.string   "country"
-    t.float    "latitude"
-    t.float    "longitude"
-    t.boolean  "gmaps"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -64,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
 
   create_table "itinerary_activities", :force => true do |t|
     t.integer  "itinerary_id"
-    t.integer  "activity_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

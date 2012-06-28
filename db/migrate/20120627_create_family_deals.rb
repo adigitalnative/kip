@@ -21,9 +21,6 @@ class CreateFamilyDeals < ActiveRecord::Migration
       t.string  :state
       t.string  :zip
       t.string  :country
-      t.float   :latitude
-      t.float   :longitude
-      t.boolean :gmaps
 
       t.timestamps
     end

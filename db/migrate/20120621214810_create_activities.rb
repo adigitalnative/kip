@@ -6,6 +6,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.string :phone
+      t.boolean :deal, default: false
 
       t.timestamps
     end
