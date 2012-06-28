@@ -4,6 +4,7 @@ Kip::Application.routes.draw do
 
   resources :itineraries
   resources :activities
+  resources :family_deals
 
   root :to => "itineraries#index"
   

@@ -1,0 +1,20 @@
+<h2>Create a families deal</h2>
+<%= form_for @deal do |f| %>
+  <%= f.submit "Generate New Deals" %>
+<% end %>
+<p>These are the deals for today. Any not on the list of deals in Kip will be included.</p>
+<table id="family_deals">
+  <% @living_social_deals.each do |deal| %>
+    <tr>
+      <td><%= deal.long_title %></td>
+      <td><%= deal.deal_type %></td>
+      <td><%= deal.market_name %></td>
+      <td>Country Code: <%= deal.country_code %></td>
+      <td><%= deal.categories %></td>
+      <td><%= deal.address1 %></td>
+      <td><%= deal.city %></td>
+      <td><%= deal.state %></td>
+      <td><%= deal.zip %></td>
+    </tr>
+  <% end %>
+</table>

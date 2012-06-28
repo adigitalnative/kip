@@ -1,0 +1,11 @@
+<h2>All Family Deals</h2>
+<%= link_to "Update Deals", new_family_deal_path %>
+<table>
+  <% @family_deals.each do |deal| %>
+    <tr>
+      <td><%= deal.id %></td>
+      <td><%= deal.long_title %></td>
+      <td><%= deal.ls_id %></td>
+    </tr>
+  <% end %>
+</table>
