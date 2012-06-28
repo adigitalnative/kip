@@ -10,11 +10,13 @@ class ItinerariesController < ApplicationController
   def show
     @itinerary = Itinerary.find(params[:id])
     @activities = @itinerary.activities
-    @json = @activities.to_gmaps4rails
+    @mapped_activities = @activities
+    @json = @mapped_activities.to_gmaps4rails
   end
 
   def new
     @itinerary = Itinerary.new
+    @deals = FamilyDeal.all
   end
 
   def create
@@ -45,7 +47,9 @@ class ItinerariesController < ApplicationController
         @available_activities << activity
       end
     end
+
     @deal = @deal || get_families_deals
+
   end
 
   def update
@@ -60,14 +64,8 @@ class ItinerariesController < ApplicationController
   private
 
   def get_families_deals
-    family_deals = LivingSocialDeal.where(deal_type:"FamiliesDeal")
-    @deals_with_address = family_deals.third
-    # family_deals.each do |deal|
-    #   if deal.address1 != nil
-    #     @deals_with_address << deal
-    #   end
-    # end
-    @deals_with_address
+    deal = FamilyDeal.all
+    deal.first
   end
 
 end

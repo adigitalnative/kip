@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
   create_table "itineraries", :force => true do |t|
     t.string   "name"
     t.string   "itinerary_activity_id"
+    t.integer  "ls_deal_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end

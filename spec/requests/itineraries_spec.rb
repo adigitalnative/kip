@@ -11,7 +11,7 @@ describe "Itineraries" do
     end
   end
 
-  describe "creating an itinerary" do
+  describe "when creating an itinerary" do
     it "has a link to create an itinerary" do
       page.should have_content("Create itinerary")
     end
@@ -21,7 +21,7 @@ describe "Itineraries" do
       page.should have_selector("#new_itinerary")
     end
 
-    it "Creates an itinerary" do
+    it "creates an itinerary" do
       current_itinerary_count = Itinerary.count
       click_link_or_button("Create itinerary")
       fill_in :name, with: "Test Itinerary"
@@ -29,7 +29,7 @@ describe "Itineraries" do
       Itinerary.count.should == current_itinerary_count + 1
     end
 
-    describe "building an itinerary when activities exist" do
+    describe "when activities exist" do
       let!(:activity_one) { FactoryGirl.create(:activity, name: "Activity One") }
       let!(:activity_two) { FactoryGirl.create(:activity, name: "Activity Two") }
       let!(:activity_three) { FactoryGirl.create(:activity, name: "Activity Three") }
@@ -43,8 +43,11 @@ describe "Itineraries" do
       end
 
       it "can add items to the itinerary" do
+        pending "Redesign"
         visit edit_itinerary_path(itinerary.id)
-        within()
+        within("#activity_list") do
+          within ("#activity_1")
+        end
         click_link_or_button("Add #{activity_one.name} to itinerary")
         within("#itinerary") do
           page.should have_content(activity_one.name)
