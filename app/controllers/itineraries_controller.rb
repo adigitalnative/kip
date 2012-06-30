@@ -16,7 +16,7 @@ class ItinerariesController < ApplicationController
 
   def new
     @itinerary = Itinerary.new
-    @deals = FamilyDeal.all
+    @deals = Activity.find_all_by_deal(true)
   end
 
   def create
@@ -38,18 +38,10 @@ class ItinerariesController < ApplicationController
     @itinerary = Itinerary.find(params[:id])
     @current_activities = @itinerary.activities
 
-    @available_activities = []
-    all_activities = Activity.all
-    all_activities.each do |activity|
-      if @current_activities.include?(activity)
-        #do nada
-      else
-        @available_activities << activity
-      end
-    end
+    build_available_activities
+    build_current_activities
 
-    @deal = @deal || get_families_deals
-
+    @deals = Activity.find_all_by_deal(true)
   end
 
   def update
@@ -66,6 +58,26 @@ class ItinerariesController < ApplicationController
   def get_families_deals
     deal = FamilyDeal.all
     deal.first
+  end
+
+  def build_current_activities
+    @current_activities.each do |activity|
+      if activity.deal = true
+        @deal = activity
+      end
+    end
+  end
+
+  def build_available_activities
+    @available_activities = []
+    all_activities = Activity.all
+    all_activities.each do |activity|
+      if activity.deal == false
+        unless @current_activities.include?(activity)
+          @available_activities << activity
+        end
+      end
+    end
   end
 
 end

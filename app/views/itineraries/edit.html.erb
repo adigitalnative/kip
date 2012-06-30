@@ -13,29 +13,46 @@
   <% end %>
 </table>
 
-<div id="deal">
-  <h2>The Deal:</h2>
-  <h3><%= @deal.long_title %></h3>
-  <p><%= @deal.address1 %><br />
-    <%= @deal.city %><br />
-    <%= @deal.state %></p>
-</div>
+<% if @deal %>
+  <div id="deal">
+    <h2>The Deal:</h2>
+    <h3><%= @deal.name %></h3>
+    <p><%= @deal.street %><br />
+      <%= @deal.city %></p>
+  </div>
 
-<h3>Possible additions to Itinerary</h3>
-<table>
-  <% @available_activities.each do |activity| %>
-    <%= form_for @itinerary do |f| %>
-      <%= f.hidden_field :activity_id, :value => activity.id %>
-      <tr>
-        <td><%= activity.name %></td>
-        <td><%= activity.street %></td>
-        <td><%= activity.city %></td>
-        <td><%= activity.country %></td>
-        <td><%= activity.phone %></td>
-        <td><%= f.submit "Add to Itinerary" %></td>
-      </tr>
+  <h3>Possible additions to Itinerary</h3>
+  <table>
+    <% @available_activities.each do |activity| %>
+      <%= form_for @itinerary do |f| %>
+        <%= f.hidden_field :activity_id, :value => activity.id %>
+        <tr>
+          <td><%= activity.name %></td>
+          <td><%= activity.street %></td>
+          <td><%= activity.city %></td>
+          <td><%= activity.country %></td>
+          <td><%= activity.phone %></td>
+          <td><%= f.submit "Add to Itinerary" %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+<% else %>
+  <div id="deal_pick">
+    <h2>Pick your Deal:</h2>
+    <table>
+      <% @deals.each do |deal| %>
+        <%= form_for @itinerary do |f| %>
+          <%= f.hidden_field :activity_id, :value => deal.id %>
+          <tr>
+            <td><%= deal.name %></td>
+            <td><%= deal.city %></td>
+            <td><%= f.submit "Add to Itinerary" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+<% end %>
 
 <p>Finished editing? <%= link_to "Return to the Itinerary view", itinerary_path(@itinerary) %></p>
