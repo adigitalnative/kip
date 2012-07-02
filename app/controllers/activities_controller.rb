@@ -26,7 +26,6 @@ class ActivitiesController < ApplicationController
         build_yelp_activities(yelp_activities, deal.id)
         mark_as_yelped(deal)
       end
-
       redirect_to activities_path
     else
       redirect_to root_path
@@ -47,6 +46,14 @@ class ActivitiesController < ApplicationController
     activity.save
   end
 
+  def yelp_activities(deals)
+    deals.each do |deal|
+      city = deal.city.split.join("+")
+      yelp_activities = yelp_query(city)
+      build_yelp_activities(yelp_activities, deal.id)
+      mark_as_yelped(deal)
+    end
+  end
 
   def yelp_query(location)
     consumer = OAuth::Consumer.new(CONSUMER_KEY, SECRET, {site: "http://api.yelp.com", signature_method: "HMAC-SHA1", scheme: :query_string})
@@ -82,7 +89,7 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  # For when yelp is rate limited - samples
+  # Sample Yelp queries for when Yelp is rate-limited
   # def yelp_query_recorded(location)
   #   dc_results = [  {"is_claimed"=>false, "rating"=>5.0, "mobile_url"=>"http://m.yelp.com/biz/yelps-caribbean-carnival-876-cafe-washington", "rating_img_url"=>"http://media3.ak.yelpcdn.com/static/201206262578611207/img/ico/stars/stars_5.png", "review_count"=>27, "name"=>"Yelp's Caribbean Carnival @ 876 Cafe", "snippet_image_url"=>"http://s3-media3.ak.yelpcdn.com/photo/t4W6npeOu79kNw9W_QYMSQ/ms.jpg", "rating_img_url_small"=>"http://media3.ak.yelpcdn.com/static/201206261949604803/img/ico/stars/stars_small_5.png", "url"=>"http://www.yelp.com/biz/yelps-caribbean-carnival-876-cafe-washington", "snippet_text"=>"**Notices review is still in \"draft\" mode**\n\nDammit!!!!\n\nWell with those pleasantries aside, on to the very belated review!\n---------------\nLet me bid a...", "image_url"=>"http://s3-media2.ak.yelpcdn.com/bphoto/LSAYyzDS1Q6_JX6V2lBgUQ/ms.jpg", "categories"=>[["Local Flavor", "localflavor"]], "rating_img_url_large"=>"http://media1.ak.yelpcdn.com/static/20120626354709277/img/ico/stars/stars_large_5.png", "id"=>"yelps-caribbean-carnival-876-cafe-washington", "is_closed"=>false, "location"=>{"cross_streets"=>"N Van Ness St & N Window Pl", "city"=>"Washington", "display_address"=>["4221-B Connecticut Ave", "(b/t N Van Ness St & N Window Pl)", "Van Ness/Forest Hills", "Washington, DC 20008"], "geo_accuracy"=>8, "neighborhoods"=>["Van Ness/Forest Hills"], "postal_code"=>"20008", "country_code"=>"US", "address"=>["4221-B Connecticut Ave"], "coordinate"=>{"latitude"=>38.9437623, "longitude"=>-77.0630127}, "state_code"=>"DC"}}, 
   #                   {"is_claimed"=>true, "rating"=>4.5, "mobile_url"=>"http://m.yelp.com/biz/dr-david-bronat-washington", "rating_img_url"=>"http://media4.ak.yelpcdn.com/static/201206263106483837/img/ico/stars/stars_4_half.png", "review_count"=>24, "name"=>"Dr. David Bronat", "snippet_image_url"=>"http://media3.ak.yelpcdn.com/static/201206261986305257/img/gfx/blank_user_medium.gif", "rating_img_url_small"=>"http://media4.ak.yelpcdn.com/static/201206261127761206/img/ico/stars/stars_small_4_half.png", "url"=>"http://www.yelp.com/biz/dr-david-bronat-washington", "phone"=>"2022961601", "snippet_text"=>"I am a very picky patient, but I am nothing but satisfied with Dr. Bronat. He is very personable and he remembers me and my pain each time I come in - I'm...", "image_url"=>"http://s3-media1.ak.yelpcdn.com/bphoto/HomRJIjY_PmMQrAgTmg2Og/ms.jpg", "categories"=>[["Chiropractors", "chiropractors"]], "display_phone"=>"+1-202-296-1601", "rating_img_url_large"=>"http://media2.ak.yelpcdn.com/static/201206262752244354/img/ico/stars/stars_large_4_half.png", "id"=>"dr-david-bronat-washington", "is_closed"=>false, "location"=>{"cross_streets"=>"N Lingers Ct & N M St", "city"=>"Washington", "display_address"=>["1145 19th St NW", "#308", "(b/t N Lingers Ct & N M St)", "Washington, DC 20036"], "geo_accuracy"=>8, "postal_code"=>"20036", "country_code"=>"US", "address"=>["1145 19th St NW", "#308"], "coordinate"=>{"latitude"=>38.905054, "longitude"=>-77.042893}, "state_code"=>"DC"}},
