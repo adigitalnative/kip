@@ -1,11 +1,28 @@
-<h2><%= @itinerary.name %></h2>
-<h3>Currently in Itinerary</h3>
-<%= render "current_activities_list" %>
+<div class="row" style="margin-top:20px;">
+  <div class="span6">
+    <h2><small>Planning For:</small> <%= @itinerary.name %></h2>
+  </div>
+  <div class="span3">
+    <div class="btn-group">
+      <%= link_to "Save Itinerary", itinerary_path(@itinerary), class: "btn btn-primary" %>
+      <%= link_to "Delete Itinerary", itinerary_path(@itinerary), method: "delete", class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
 
-<%= gmaps4rails(@activity_map) %>
+<% unless @current_activities = [] %>
+  <h3>Currently in Itinerary</h3>
+  <%= render "current_activities_list" %>
+<% end %>
 
 <% if @deal %>
-  <p>Finished editing? <%= link_to "Return to the Itinerary view", itinerary_path(@itinerary) %></p>
+
+  <div class="row">
+    <div class="span8" style="margin-bottom:20px;">
+      <%= gmaps4rails(@activity_map) %>
+    </div>
+  </div>
+
   <div class="row">
     <%= render "deal_panel" %>
     <%= render "activity_picker" %>
