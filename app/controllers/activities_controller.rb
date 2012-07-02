@@ -1,26 +1,36 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.find_all_by_deal(false)
-    @deals = Activity.find_all_by_deal(true)
-    @json = @activities.to_gmaps4rails
+    if current_user.email == "adigitalnative@gmail.com"
+      @activities = Activity.find_all_by_deal(false)
+      @deals = Activity.find_all_by_deal(true)
+      @json = @activities.to_gmaps4rails
+    else
+      redirect_to root_path
+    end
   end
 
-  
-
   def new
-    @activity = Activity.new
+    if current_user.email == "adigitalnative@gmail.com"
+      @activity = Activity.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
-    @deals_without_yelp_activities = unyelped_deals
-    @deals_without_yelp_activities.each do |deal|
-      city = deal.city.split.join("+")
-      yelp_activities = yelp_query(city)
-      build_yelp_activities(yelp_activities, deal.id)
-      mark_as_yelped(deal)
-    end
+    if current_user.email == "adigitalnative@gmail.com"
+      @deals_without_yelp_activities = unyelped_deals
+      @deals_without_yelp_activities.each do |deal|
+        city = deal.city.split.join("+")
+        yelp_activities = yelp_query(city)
+        build_yelp_activities(yelp_activities, deal.id)
+        mark_as_yelped(deal)
+      end
 
-    redirect_to activities_path
+      redirect_to activities_path
+    else
+      redirect_to root_path
+    end
   end
 
   private

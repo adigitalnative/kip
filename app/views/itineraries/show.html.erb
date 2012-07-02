@@ -1,12 +1,22 @@
 <h2><%= @itinerary.name %></h2>
-<%= link_to "Delete", itinerary_path(@itinerary), method: "delete" %>
-<%= link_to "Edit this Itinerary", edit_itinerary_path(@itinerary) %>
-<%= gmaps4rails(@json) %>
-<table id="itinerary">
+<div class="row">
+  <div class="span5">
+    <p>Here's your trip! You can view it online here whenever you'd like, print it, or send it to yourself in an email.</p>
+  </div>
+  <div class="span4">
+    <div class="btn-group pull-right">  
+      <%= link_to "Back to all itineraries", itineraries_path, class: "btn" %>
+      <%= link_to "Edit this Itinerary", edit_itinerary_path(@itinerary), class: "btn btn-primary" %>
+      <%= link_to "Delete", itinerary_path(@itinerary), method: "delete", class: "btn btn-danger" %>
+    </div>
+  </div>
+</div>
 
-</table>
+<div style="margin-bottom:20px;">
+  <%= gmaps4rails(@json) %></p>
+</div>
 
-<table>
+<table class="table" id="itinerary">
   <% @activities.each do |activity| %>
     <tr>
       <td><%= activity.name %></td>
@@ -17,5 +27,3 @@
     </tr>
   <% end %>
 </table>
-
-<%= link_to "Return to all itineraries", itineraries_path %>

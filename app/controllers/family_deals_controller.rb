@@ -6,21 +6,33 @@ class FamilyDealsController < ApplicationController
                           "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
                           "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" ]
   def index
-    @family_deals = FamilyDeal.all
+    if current_user.email == "adigitalnative@gmail.com"
+      @family_deals = FamilyDeal.all
+    else
+      redirect_to root_path
+    end
   end
 
   def new
-    @deal = FamilyDeal.new
-    @living_social_deals = get_families_deals
+    if current_user.email == "adigitalnative@gmail.com"
+      @deal = FamilyDeal.new
+      @living_social_deals = get_families_deals
+    else
+      redirect_to root_path
+    end
   end
 
   def create
-    old_families_deals = FamilyDeal.all
-    old_families_deals_titles = old_families_deals.collect do |deal|
-      deal.long_title
+    if current_user.email == "adigitalnative@gmail.com"
+      old_families_deals = FamilyDeal.all
+      old_families_deals_titles = old_families_deals.collect do |deal|
+        deal.long_title
+      end
+      build_new_families_deals(old_families_deals_titles)
+      redirect_to family_deals_path
+    else
+      redirect_to root_path
     end
-    build_new_families_deals(old_families_deals_titles)
-    redirect_to family_deals_path
   end
   
   private
