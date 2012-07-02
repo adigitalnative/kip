@@ -5,8 +5,10 @@ describe 'activities' do
   context "when there are activities" do
     let!(:activity_one) { FactoryGirl.create(:activity, name: "Activity One") }
     let!(:activity_two) { FactoryGirl.create(:activity, name: "Activity Two") }
-    
-    before(:each) {visit activities_path}
+
+    before(:each) do
+      visit activities_path
+    end
 
     it "has a list of the activites" do
       page.should have_content(activity_one.name)
