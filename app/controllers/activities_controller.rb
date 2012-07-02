@@ -5,6 +5,8 @@ class ActivitiesController < ApplicationController
     @json = @activities.to_gmaps4rails
   end
 
+  
+
   def new
     @activity = Activity.new
   end
