@@ -22,7 +22,14 @@ describe 'activities' do
   end
 
   context "creating new activities" do
-    before(:each) {visit new_activity_path}
+    let!(:user) { FactoryGirl.create(:user)}
+    before(:each) do
+      visit root_path
+      fill_in 'Email', with: 'adigitalnative@gmail.com'
+      fill_in 'Password', with: 'hungry'
+      click_link_or_button("Sign in")
+      visit new_activity_path
+    end
 
     it "is false" do
       page.should have_selector("#build_activities")
