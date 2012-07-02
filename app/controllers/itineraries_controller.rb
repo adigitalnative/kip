@@ -6,7 +6,7 @@ class ItinerariesController < ApplicationController
     else
       @itineraries = Itinerary.find_all_by_user_id(current_user.id)
       if @itineraries == []
-        @empty_message = "You haven't created an itineraries yet! Why don't you get started?"
+        @empty_message = "You haven't created any itineraries yet! Why don't you get started?"
       end
     end
   end

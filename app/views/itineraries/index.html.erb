@@ -8,7 +8,7 @@
 </div>
 <div id="itinerary_list">
   <% if @itineraries == [] %>
-    <p><%= @empty_message %></p>
+    <p id="empty_itinerary_message"><%= @empty_message %></p>
   <% else %>
     <% @itineraries.each do |itinerary| %>
       <div class="itinerary_item span2 well" style="text-align: center">
