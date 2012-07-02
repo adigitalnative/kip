@@ -1,60 +1,16 @@
 <h2><%= @itinerary.name %></h2>
 <h3>Currently in Itinerary</h3>
-<table id="itinerary">
-  <% @current_activities.each do |activity| %>
-    <tr>
-      <td><%= activity.name %></td>
-      <td><%= activity.street %></td>
-      <td><%= activity.city %></td>
-      <td><%= activity.country %></td>
-      <td><%= activity.phone %></td>
-      <td><%= link_to "Delete Activity [not yet active]"%></td>
-    </tr>
-  <% end %>
-</table>
+<%= render "current_activities_list" %>
 
 <%= gmaps4rails(@activity_map) %>
 
 <% if @deal %>
-  <div id="deal">
-    <h2>The Deal:</h2>
-    <h3><%= @deal.name %></h3>
-    <p><%= @deal.street %><br />
-      <%= @deal.city %></p>
+  <p>Finished editing? <%= link_to "Return to the Itinerary view", itinerary_path(@itinerary) %></p>
+  <div class="row">
+    <%= render "deal_panel" %>
+    <%= render "activity_picker" %>
   </div>
-
-  <h3>Possible additions to Itinerary</h3>
-  <table>
-    <% @available_activities.each do |activity| %>
-      <%= form_for @itinerary do |f| %>
-        <%= f.hidden_field :activity_id, :value => activity.id %>
-        <tr>
-          <td><%= activity.name %></td>
-          <td><%= activity.street %></td>
-          <td><%= activity.city %></td>
-          <td><%= activity.country %></td>
-          <td><%= activity.phone %></td>
-          <td><%= f.submit "Add to Itinerary" %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
 <% else %>
-  <div id="deal_pick">
-    <h2>Pick your Deal:</h2>
-    <table>
-      <% @deals.each do |deal| %>
-        <%= form_for @itinerary do |f| %>
-          <%= f.hidden_field :activity_id, :value => deal.id %>
-          <tr id="deal_<%= deal.id %>">
-            <td><%= deal.name %></td>
-            <td><%= deal.city %></td>
-            <td><%= f.submit "Add to Itinerary" %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
-  </div>
+  <%= render "deal_picker" %>
 <% end %>
 
-<p>Finished editing? <%= link_to "Return to the Itinerary view", itinerary_path(@itinerary) %></p>

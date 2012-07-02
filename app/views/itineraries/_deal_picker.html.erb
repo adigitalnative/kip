@@ -1,0 +1,17 @@
+<div id="deal_pick">
+  <h2>Pick your Deal:</h2>
+  <div class="deal_pick_panel">
+    <table class="table">
+      <% @deals.each do |deal| %>
+        <%= form_for @itinerary do |f| %>
+          <%= f.hidden_field :activity_id, :value => deal.id %>
+          <tr id="deal_<%= deal.id %>">
+            <td><%= deal.name %></td>
+            <td><%= deal.city %></td>
+            <td><%= f.submit "Add to Itinerary", class: "btn" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
