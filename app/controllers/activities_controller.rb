@@ -3,7 +3,6 @@ class ActivitiesController < ApplicationController
     @activities = Activity.find_all_by_deal(false)
     @deals = Activity.find_all_by_deal(true)
     @json = @activities.to_gmaps4rails
-    raise_model(foo)
   end
 
   def new
