@@ -1,9 +1,13 @@
 
 class ItinerariesController < ApplicationController
   def index
-    @itineraries = Itinerary.all
-    if @itineraries == []
-      @empty_message = "There are no itineraries. Perhaps you should create an itinerary?"
+    unless current_user
+      redirect_to new_user_session_path
+    else
+      @itineraries = Itinerary.find_all_by_user_id(current_user.id)
+      if @itineraries == []
+        @empty_message = "You haven't created an itineraries yet! Why don't you get started?"
+      end
     end
   end
 

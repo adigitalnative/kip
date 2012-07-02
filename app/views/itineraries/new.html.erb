@@ -1,5 +1,6 @@
 <h2>Create Itinerary</h2>
 <%= form_for @itinerary do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div>
     <%= f.label :name %>
     <%= f.text_field :name %>

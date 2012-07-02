@@ -1,18 +1,23 @@
-<h2>Your Itineraries</h2>
-
-<%= link_to "Create itinerary", new_itinerary_path %>
-<table id="itinerary_list">
+<div class="row">
+  <div class="span6">
+    <h2>Your Plans</h2>
+  </div>
+  <div class="span2">
+    <%= link_to "Create itinerary", new_itinerary_path, class: "btn" %>
+  </div>
+</div>
+<table id="itinerary_list" class="table">
   <% if @itineraries == [] %>
     <%= @empty_message %>
   <% else %>
   <tr>
-    <th>ID</th>
     <th>Name</th>
+    <th>Created</th>
   </tr>
     <% @itineraries.each do |itinerary| %>
       <tr>
-        <td><%= itinerary.id %></td>
         <td><%= link_to itinerary.name, itinerary_path(itinerary) %></td>
+        <td><%= itinerary.created_at %>
       </tr>
     <% end %>
   <% end %>
