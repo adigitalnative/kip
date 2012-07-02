@@ -2,12 +2,11 @@
   <table id="itinerary">
     <% @current_activities.each do |activity| %>
       <tr>
-        <td><%= activity.name %></td>
+        <td><%= link_to activity.name, activity.link %></td>
         <td><%= activity.street %></td>
         <td><%= activity.city %></td>
         <td><%= activity.country %></td>
         <td><%= activity.phone %></td>
-        <td><%= link_to "Delete Activity [not yet active]"%></td>
       </tr>
     <% end %>
   </table>
