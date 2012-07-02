@@ -5,8 +5,8 @@
 
 APPLICATION_NAME = "kip"
 SCRIPT_NAME = "kip"
-REPOSITORY = "git://github.com/adigitalnative/kip.git"
-START_COMMAND = 'cd /apps/kip/current \\\&\\\& bundle exec rails s'
+REPOSITORY = "git@github.com:adigitalnative/kip.git"
+START_COMMAND = "cd /apps/kip/current \\\&\\\& bundle exec rails s"
 
 # Unicorn start example
 # START_COMMAND = "unicorn /apps/#{APPLICATION_NAME}/current/config.ru -p 3001"
@@ -53,7 +53,7 @@ namespace :deploy do
   task :create_god_script do
     run %^cd /apps/god_scripts && touch #{SCRIPT_NAME}.rb && rm #{SCRIPT_NAME}.rb && touch #{SCRIPT_NAME}.rb^
     run %^echo God.watch do \\\|w\\\| >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
-    run %^echo w.log = \\\"apps/logs/#{SCRIPT_NAME}.log\\\" >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
+    run %^echo w.log = \\\"/#{SCRIPT_NAME}.log\\\" >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
     run %^echo w.name = \\\"#{SCRIPT_NAME}\\\" >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
     run %^echo w.start = \\\"#{START_COMMAND}\\\" >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
     run %^echo w.keepalive >> /apps/god_scripts/#{SCRIPT_NAME}.rb^
