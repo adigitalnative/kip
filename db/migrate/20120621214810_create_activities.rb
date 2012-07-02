@@ -6,6 +6,9 @@ class CreateActivities < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.string :phone
+      t.string :categories
+      t.string :image_url
+      t.string :link
       t.integer :deal_activity_id
       t.boolean :deal, default: false
       t.boolean :deal_activities_built, default: false

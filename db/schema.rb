@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626153543) do
+ActiveRecord::Schema.define(:version => 20120627000000) do
 
   create_table "activities", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
     t.string   "city"
     t.string   "country"
     t.string   "phone"
+    t.string   "categories"
+    t.string   "image_url"
+    t.string   "link"
     t.integer  "deal_activity_id"
     t.boolean  "deal",                  :default => false
     t.boolean  "deal_activities_built", :default => false

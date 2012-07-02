@@ -1,5 +1,10 @@
-
 class FamilyDealsController < ApplicationController
+
+  STATE_ABBREVIATIONS = [ "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+                          "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+                          "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+                          "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+                          "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" ]
   def index
     @family_deals = FamilyDeal.all
   end
@@ -24,11 +29,28 @@ class FamilyDealsController < ApplicationController
     family_deals = LivingSocialDeal.where(deal_type:"FamiliesDeal")
     us_deals_with_address = []
     family_deals.each do |deal|
-      if deal.country_code = "US" && deal.address1 != nil
+      if STATE_ABBREVIATIONS.include?(deal.state) && deal.address1 != nil
         us_deals_with_address << deal
       end
     end
-    us_deals_with_address
+    deals = dedup(us_deals_with_address)
+    sample(deals)
+  end
+
+  def sample(deals)
+    deals[0..9]
+  end
+
+  def dedup(deals)
+    titles = []
+    deduped_deals = []
+    deals.each do |deal|
+      unless titles.include?(deal.long_title)
+        deduped_deals << deal
+        titles << deal.long_title
+      end
+    end
+    deduped_deals
   end
 
   def build_new_families_deals(old_families_deals_titles)
@@ -53,6 +75,9 @@ class FamilyDealsController < ApplicationController
     new_deal.state = deal.state
     new_deal.zip = deal.zip
     new_deal.country = "USA"
+    new_deal.image_url = deal.image_url
+    new_deal.categories = deal.categories
+    new_deal.link = deal.link
     new_deal.save
   end
 
@@ -63,6 +88,9 @@ class FamilyDealsController < ApplicationController
     new_activity.city = deal.city
     new_activity.country = "USA"
     new_activity.deal = true
+    new_activity.image_url = deal.image_url
+    new_activity.categories = deal.categories
+    new_activity.link = deal.link
     new_activity.save
   end
 end
