@@ -6,19 +6,16 @@
     <%= link_to "Create itinerary", new_itinerary_path, class: "btn btn-primary" %>
   </div>
 </div>
-<table id="itinerary_list" class="table">
+<div id="itinerary_list">
   <% if @itineraries == [] %>
     <p><%= @empty_message %></p>
   <% else %>
-  <tr>
-    <th>Name</th>
-    <th>Created</th>
-  </tr>
     <% @itineraries.each do |itinerary| %>
-      <tr>
-        <td><%= link_to itinerary.name, itinerary_path(itinerary) %></td>
-        <td><%= itinerary.created_at %>
-      </tr>
+      <div class="itinerary_item span2 well" style="text-align: center">
+        <h3><%= link_to itinerary.name, itinerary_path(itinerary) %></h3>
+        <%= link_to (image_tag itinerary_photo_url(itinerary.id)), itinerary_path(itinerary) %>
+      </div>
     <% end %>
   <% end %>
-</table>
+</div>  
+  
