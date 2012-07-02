@@ -46,7 +46,7 @@
       <% @deals.each do |deal| %>
         <%= form_for @itinerary do |f| %>
           <%= f.hidden_field :activity_id, :value => deal.id %>
-          <tr>
+          <tr id="deal_<%= deal.id %>">
             <td><%= deal.name %></td>
             <td><%= deal.city %></td>
             <td><%= f.submit "Add to Itinerary" %></td>

@@ -29,6 +29,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 3.0"
   gem 'capybara'
   gem 'launchy'
+  gem 'simplecov'
 end
 
 gem 'jquery-rails'

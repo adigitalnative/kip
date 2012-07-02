@@ -9,6 +9,7 @@ describe "Itineraries" do
     it "should instruct the user to create an itinerary" do
       page.should have_content("create an itinerary")
     end
+
   end
 
   describe "when creating an itinerary" do
@@ -90,6 +91,17 @@ describe "Itineraries" do
         click_link_or_button "Delete"
         page.should_not have_content("Itinerary One")
       end
+    end
+
+    describe "editing an itinerary" do
+      before(:each) do
+        visit edit_itinerary_path(itinerary_one.id)
+      end
+
+      it "asks you to pick a deal" do
+        page.should have_selector("#deal_pick")
+      end
+
     end
   end
 

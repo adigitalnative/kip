@@ -1,6 +1,6 @@
 <h2>All Family Deals</h2>
 <%= link_to "Update Deals", new_family_deal_path %>
-<table>
+<table id ="family_deals">
   <% @family_deals.each do |deal| %>
     <tr>
       <td><%= deal.id %></td>

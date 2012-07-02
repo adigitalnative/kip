@@ -39,7 +39,9 @@ class ItinerariesController < ApplicationController
     @current_activities = @itinerary.activities
 
     @deal = this_itinerary_deal
-    build_available_activities(@deal.id)
+    if @deal
+      build_available_activities(@deal.id)
+    end
 
     @deals = Activity.find_all_by_deal(true)
 
@@ -56,11 +58,6 @@ class ItinerariesController < ApplicationController
   end
 
   private
-
-  def get_families_deals
-    deal = FamilyDeal.all
-    deal.first
-  end
 
   def this_itinerary_deal
     deal = @current_activities.each do |activity|
