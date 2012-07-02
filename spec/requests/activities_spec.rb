@@ -20,4 +20,12 @@ describe 'activities' do
       page.should have_content(activity_two.name)
     end
   end
+
+  context "creating new activities" do
+    before(:each) {visit new_activity_path}
+
+    it "is false" do
+      page.should have_selector("#build_activities")
+    end
+  end
 end
