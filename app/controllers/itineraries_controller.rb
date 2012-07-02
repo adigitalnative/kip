@@ -29,7 +29,7 @@ class ItinerariesController < ApplicationController
 
     flash[:message] = "Itinerary Created"
 
-    redirect_to itinerary_path(@itinerary)
+    redirect_to edit_itinerary_path(@itinerary)
   end
 
   def destroy

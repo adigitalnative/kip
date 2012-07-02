@@ -1,11 +1,12 @@
-<h2>Create Itinerary</h2>
+<h2><small>Step 1:</small> Name your Itinerary</h2>
+<p><span>Every itinerary needs a name. Otherwise, how will you know which one it is?</p>
 <%= form_for @itinerary do |f| %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label "What's the name of your next adventure?" %>
+    <%= f.text_field :name, class: "span9" %>
   </div>
   <div>
-    <%= f.submit "Save Itinerary" %>
+    <%= f.submit "Start Building", class: "btn" %>
   </div>
 <% end %>

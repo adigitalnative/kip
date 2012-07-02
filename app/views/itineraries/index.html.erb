@@ -3,12 +3,12 @@
     <h2>Your Plans</h2>
   </div>
   <div class="span2">
-    <%= link_to "Create itinerary", new_itinerary_path, class: "btn" %>
+    <%= link_to "Create itinerary", new_itinerary_path, class: "btn btn-primary" %>
   </div>
 </div>
 <table id="itinerary_list" class="table">
   <% if @itineraries == [] %>
-    <%= @empty_message %>
+    <p><%= @empty_message %></p>
   <% else %>
   <tr>
     <th>Name</th>
