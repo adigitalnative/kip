@@ -18,7 +18,7 @@ START_COMMAND = 'cd /apps/kip/current && bundle exec rails s'
 # If you want to launch to Falling Garden, launch with
 # DEPLOY_MODE="staging" cap deploy
 
-SERVER = 'digitalfoundry.com'
+SERVER = 'nativefoundry.com'
 
 
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
@@ -89,5 +89,5 @@ namespace :deploy do
   after "deploy", "deploy:bundle"
   after "deploy", "deploy:db_migrate"
   #after "deploy", "deploy:precompile_assets"
-  after "deploy", "deploy:restart""
+  after "deploy", "deploy:restart"
 end
