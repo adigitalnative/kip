@@ -6,7 +6,7 @@
 APPLICATION_NAME = "kip"
 SCRIPT_NAME = "kip"
 REPOSITORY = "git://github.com/adigitalnative/kip.git"
-START_COMMAND = 'cd /apps/kip/current && bundle exec rails s'
+START_COMMAND = 'cd /apps/kip/current \\\&\\\& bundle exec rails s'
 
 # Unicorn start example
 # START_COMMAND = "unicorn /apps/#{APPLICATION_NAME}/current/config.ru -p 3001"
