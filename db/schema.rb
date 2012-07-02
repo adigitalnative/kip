@@ -19,9 +19,11 @@ ActiveRecord::Schema.define(:version => 20120626153543) do
     t.string   "city"
     t.string   "country"
     t.string   "phone"
-    t.boolean  "deal",       :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.integer  "deal_activity_id"
+    t.boolean  "deal",                  :default => false
+    t.boolean  "deal_activities_built", :default => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.float    "latitude"
     t.float    "longitude"
     t.boolean  "gmaps"

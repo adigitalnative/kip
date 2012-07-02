@@ -1,10 +1,15 @@
 <h2>Activities</h2>
 <% if @activities == [] %>
-  <p>
-    There are no activities yet. Please check back soon!</td>
-  </p>
+  <% if @deals == [] %>
+    <p>
+      There are no activities or deals yet. Please check back soon!</td>
+    </p>
+  <% else %>
+    <p>There are deals in the system. Build the list of related deals by clicking <%= link_to "here", new_activity_path %>.</p>
+  <% end %>
 <% else %>
   <%= gmaps4rails(@json) %>
+  <%= link_to "Add Additional Activities", new_activity_path %>
   <table>
     <tr>
       <th>ID</th>
@@ -22,6 +27,7 @@
         <td><%= activity.city %></td>
         <td><%= activity.country %></td>
         <td><%= activity.phone %></td>
+        <td><%= activity.deal_activity_id %></td>
       </tr>
     <% end %>
   </table>

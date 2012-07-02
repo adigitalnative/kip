@@ -7,5 +7,4 @@ class Activity < ActiveRecord::Base
     "#{self.street}, #{self.city}, #{self.country}"
   end
 
-  
 end

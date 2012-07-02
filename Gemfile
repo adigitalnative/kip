@@ -36,6 +36,7 @@ gem 'devise'
 gem 'gmaps4rails'
 gem 'mongoid'
 gem 'bson_ext'
+gem 'oauth'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

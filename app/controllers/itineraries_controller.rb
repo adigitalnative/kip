@@ -38,10 +38,12 @@ class ItinerariesController < ApplicationController
     @itinerary = Itinerary.find(params[:id])
     @current_activities = @itinerary.activities
 
-    build_available_activities
-    build_current_activities
+    @deal = this_itinerary_deal
+    build_available_activities(@deal.id)
 
     @deals = Activity.find_all_by_deal(true)
+
+    @activity_map = @current_activities.to_gmaps4rails
   end
 
   def update
@@ -60,19 +62,20 @@ class ItinerariesController < ApplicationController
     deal.first
   end
 
-  def build_current_activities
-    @current_activities.each do |activity|
+  def this_itinerary_deal
+    deal = @current_activities.each do |activity|
       if activity.deal = true
-        @deal = activity
+        activity
       end
     end
+    deal = deal.first
   end
 
-  def build_available_activities
+  def build_available_activities(deal_id)
     @available_activities = []
-    all_activities = Activity.all
+    all_activities = Activity.find_all_by_deal_activity_id(deal_id)
     all_activities.each do |activity|
-      if activity.deal == false
+      if activity.deal == false 
         unless @current_activities.include?(activity)
           @available_activities << activity
         end
