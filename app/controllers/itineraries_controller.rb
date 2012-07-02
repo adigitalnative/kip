@@ -38,7 +38,7 @@ class ItinerariesController < ApplicationController
     @itinerary = Itinerary.find(params[:id])
     @current_activities = @itinerary.activities
 
-    @deal = this_itinerary_deal
+    @deal = @deal || this_itinerary_deal
     if @deal
       build_available_activities(@deal.id)
     end
