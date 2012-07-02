@@ -39,6 +39,11 @@ class ActivitiesController < ApplicationController
   SECRET = "y-lCC8eFxjpk6EszM4ndzOtN_wc"
   TOKEN = "3ysbGiBfWEVIeFI4fjHkRvA45MnSIjTm"
   TOKEN_SECRET = "nrVpYNr9qrkPvvbKqjQztpzCSdw"
+  CATEGORIES = ["amusementparks", "aquariums", "beaches", "gokarts",
+    "kiteboarding", "lakes", "mini_golf", "paddleboarding", "parks", "playgrounds",
+    "rafting", "recreation", "skatingrinks", "surfing", "zoos", "arcades",
+    "galleries", "gardens", "movietheaters", "museums", "bakeries",
+    "farmersmarket", "gelato", "icecream", "candy", "restaurants"].join(",")
 
   def mark_as_yelped(deal)
     activity = Activity.find(deal.id)
@@ -58,7 +63,7 @@ class ActivitiesController < ApplicationController
   def yelp_query(location)
     consumer = OAuth::Consumer.new(CONSUMER_KEY, SECRET, {site: "http://api.yelp.com", signature_method: "HMAC-SHA1", scheme: :query_string})
     access_token = OAuth::AccessToken.new(consumer, TOKEN, TOKEN_SECRET)
-    yelp_activities = JSON.parse(access_token.get("/v2/search?location=#{location}").body)
+    yelp_activities = JSON.parse(access_token.get("/v2/search?location=#{location}&category_filter=#{CATEGORIES}").body)
     yelp_activities["businesses"]
   end
 

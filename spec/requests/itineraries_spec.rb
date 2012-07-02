@@ -51,19 +51,17 @@ describe "Itineraries" do
         page.should_not have_content(activity_three.name)
       end
 
-      it "can add items to the itinerary" do
-        pending "Redesign"
-        visit edit_itinerary_path(itinerary.id)
-        within("#activity_list") do
-          within ("#activity_1")
-        end
-        click_link_or_button("Add #{activity_one.name} to itinerary")
-        within("#itinerary") do
-          page.should have_content(activity_one.name)
-        end
-      end
-
-      it "does not include added items in the list of activities to select"
+      # it "can add items to the itinerary" do
+      #   pending "Redesign"
+      #   visit edit_itinerary_path(itinerary.id)
+      #   within("#activity_list") do
+      #     within ("#activity_1")
+      #   end
+      #   click_link_or_button("Add #{activity_one.name} to itinerary")
+      #   within("#itinerary") do
+      #     page.should have_content(activity_one.name)
+      #   end
+      # end
 
     end
 
