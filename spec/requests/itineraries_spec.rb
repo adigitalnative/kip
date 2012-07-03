@@ -32,8 +32,7 @@ describe "Itineraries" do
       pending "silly name on label issue!"
       current_itinerary_count = Itinerary.count
       click_link_or_button("Create itinerary")
-      save_and_open_page
-      fill_in "#name", with: "Test Itinerary"
+      fill_in :name, with: "Test Itinerary"
       click_link_or_button("Save Itinerary")
       Itinerary.count.should == current_itinerary_count + 1
     end
