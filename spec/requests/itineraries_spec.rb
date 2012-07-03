@@ -32,8 +32,7 @@ describe "Itineraries" do
       pending "silly name on label issue!"
       current_itinerary_count = Itinerary.count
       click_link_or_button("Create itinerary")
-      save_and_open_page
-      fill_in "#name", with: "Test Itinerary"
+      fill_in :name, with: "Test Itinerary"
       click_link_or_button("Save Itinerary")
       Itinerary.count.should == current_itinerary_count + 1
     end
@@ -51,19 +50,17 @@ describe "Itineraries" do
         page.should_not have_content(activity_three.name)
       end
 
-      it "can add items to the itinerary" do
-        pending "Redesign"
-        visit edit_itinerary_path(itinerary.id)
-        within("#activity_list") do
-          within ("#activity_1")
-        end
-        click_link_or_button("Add #{activity_one.name} to itinerary")
-        within("#itinerary") do
-          page.should have_content(activity_one.name)
-        end
-      end
-
-      it "does not include added items in the list of activities to select"
+      # it "can add items to the itinerary" do
+      #   pending "Redesign"
+      #   visit edit_itinerary_path(itinerary.id)
+      #   within("#activity_list") do
+      #     within ("#activity_1")
+      #   end
+      #   click_link_or_button("Add #{activity_one.name} to itinerary")
+      #   within("#itinerary") do
+      #     page.should have_content(activity_one.name)
+      #   end
+      # end
 
     end
 

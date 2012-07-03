@@ -11,4 +11,22 @@ require 'spec_helper'
 #   end
 # end
 describe ItinerariesHelper do
+  let!(:itinerary) { FactoryGirl.create(:itinerary) }
+    let!(:activity_one) { FactoryGirl.create(:activity, deal: true, image_url: "foo", name: "A Deal")}
+    before(:each) do
+      itinerary.activities << activity_one
+    end
+
+  describe "itinerary_photo_url" do
+    
+    it "provides an image url" do
+      itinerary_photo_url(itinerary.id).should == "foo"
+    end
+  end
+
+  describe "deal_name" do
+    it "provides the deal name associated with the itinerary" do
+      deal_name(itinerary.id).name.should == "A Deal"
+    end
+  end
 end
