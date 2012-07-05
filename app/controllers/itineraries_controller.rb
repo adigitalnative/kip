@@ -65,7 +65,7 @@ class ItinerariesController < ApplicationController
 
   def this_itinerary_deal
     deal = @current_activities.each do |activity|
-      if activity.deal = true
+      if activity.deal == true
         activity
       end
     end
