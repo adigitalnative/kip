@@ -18,7 +18,7 @@ In main_config.rb:
     
 You may also specify your search categories by setting CATEGORIES to be more or less specfic.
 
-Set ADMIN_EMAIL to equal your main email address. A user account with that email will be able to load new deals and activities.
+    Set ADMIN_EMAIL to equal your main email address. A user account with that email will be able to load new deals and activities.
 
 3. 'rails server' to run the app
 
