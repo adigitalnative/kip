@@ -4,6 +4,7 @@ class CreateItineraries < ActiveRecord::Migration
       t.string  :name
       t.string  :itinerary_activity_id
       t.integer :ls_deal_id
+      t.integer :user_id
 
       t.timestamps
     end
