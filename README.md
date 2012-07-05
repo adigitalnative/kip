@@ -33,7 +33,7 @@ Using the app - admin/setup
 
 Using the app - Users
 ====
-1. Go to the URL you've launched, if it's running locally likely localhost:3000
+1. Go to the URL you've launched, if it's running locally it is likely at localhost:3000
 2. Create an account if you do not have one already.
 3. Click the dark blue 'Create Itinerary' button.
 4. Give your itinerary a name.
