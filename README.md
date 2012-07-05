@@ -9,14 +9,14 @@ Installation
 2. Bundle install, rake db:migrate & rake db:test:prepare
 3. Set up the config file. First, go to http://www.yelp.com/developers/ and if you do not have one already, create an API key. You need one for their API V2.
 
-    In main_config.rb:
+In main_config.rb:
 
     CONSUMER_KEY = "Yelp Consumer Key"
     CONSUMER_SECRET = "Yelp Consumer Secret"
     TOKEN = "Yelp Token"
     TOKEN_SECRET = "Yelp Token Secret"
     
-    You may also specify your search categories by setting CATEGORIES to be more or less specfic.
+You may also specify your search categories by setting CATEGORIES to be more or less specfic.
 
     Set ADMIN_EMAIL to equal your main email address. A user account with that email will be able to load new deals and activities.
 
