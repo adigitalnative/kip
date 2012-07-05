@@ -4,11 +4,13 @@ Kip - The Family Itinerary App
 Kip is an itinerary app designed to turn your LivingSocial Families deal into a fantastic day for the entire family.
 
 Installation
-====
+---
 1. Clone the repo
 2. Bundle install, rake db:migrate & rake db:test:prepare
 3. Set up the config file. First, go to http://www.yelp.com/developers/ and if you do not have one already, create an API key. You need one for their API V2.
+
     In main_config.rb:
+
     CONSUMER_KEY = "Yelp Consumer Key"
     CONSUMER_SECRET = "Yelp Consumer Secret"
     TOKEN = "Yelp Token"
@@ -20,8 +22,8 @@ Installation
 
 3. 'rails server' to run the app
 
-Using the app - admin/setup
-====
+Setting Up the App
+---
 1. Go to the URL you've launched at, usually localhost:3000
 2. Create an account using the admin login and sign in
 3. Load the deals
@@ -31,8 +33,8 @@ Using the app - admin/setup
     Go to /activities and click 'Add Additional Activities'
     Click the button 'Create Activities from Deals'
 
-Using the app - Users
-====
+Using the App (Users)
+---
 1. Go to the URL you've launched, if it's running locally it is likely at localhost:3000
 2. Create an account if you do not have one already.
 3. Click the dark blue 'Create Itinerary' button.
@@ -45,6 +47,6 @@ You can view a list of all your itineraries at the root of the app when logged i
 
 
 Tests
-====
+---
 Tests are rspec, bundle exec rspec to run.
 
