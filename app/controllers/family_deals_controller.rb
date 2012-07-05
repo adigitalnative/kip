@@ -6,7 +6,7 @@ class FamilyDealsController < ApplicationController
                           "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
                           "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY" ]
   def index
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       @family_deals = FamilyDeal.all
     else
       redirect_to root_path
@@ -14,7 +14,7 @@ class FamilyDealsController < ApplicationController
   end
 
   def new
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       @deal = FamilyDeal.new
       @living_social_deals = get_families_deals
     else
@@ -23,7 +23,7 @@ class FamilyDealsController < ApplicationController
   end
 
   def create
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       old_families_deals = FamilyDeal.all
       old_families_deals_titles = old_families_deals.collect do |deal|
         deal.long_title

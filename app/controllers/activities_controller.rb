@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       @activities = Activity.find_all_by_deal(false)
       @deals = Activity.find_all_by_deal(true)
       @json = @activities.to_gmaps4rails
@@ -10,7 +10,7 @@ class ActivitiesController < ApplicationController
   end
 
   def new
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       @activity = Activity.new
     else
       redirect_to root_path
@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    if current_user.email == "adigitalnative@gmail.com"
+    if current_user.email == ADMIN_EMAIL
       @deals_without_yelp_activities = unyelped_deals
       @deals_without_yelp_activities.each do |deal|
         city = deal.city.split.join("+")
@@ -33,18 +33,7 @@ class ActivitiesController < ApplicationController
   end
 
   private
-
-  #TODO: Move the set of these to an initializer
-  CONSUMER_KEY = "7QsDS8wC4bDb7hVpRksBTg"
-  SECRET = "y-lCC8eFxjpk6EszM4ndzOtN_wc"
-  TOKEN = "3ysbGiBfWEVIeFI4fjHkRvA45MnSIjTm"
-  TOKEN_SECRET = "nrVpYNr9qrkPvvbKqjQztpzCSdw"
-  CATEGORIES = ["amusementparks", "aquariums", "beaches", "gokarts",
-    "kiteboarding", "lakes", "mini_golf", "paddleboarding", "parks", "playgrounds",
-    "rafting", "recreation", "skatingrinks", "surfing", "zoos", "arcades",
-    "galleries", "gardens", "movietheaters", "museums", "bakeries",
-    "farmersmarket", "gelato", "icecream", "candy", "restaurants"].join(",")
-
+  
   def mark_as_yelped(deal)
     activity = Activity.find(deal.id)
     activity.deal_activities_built == true
